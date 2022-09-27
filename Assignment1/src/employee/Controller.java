@@ -78,7 +78,10 @@ public class Controller {
 	public void deductions(double g) {
 		double gross = g;
 		calcWithHold(gross);
-		
+		calcCPP(gross);
+		calcEl(gross);
+		calcExtHealth(gross);
+		calcUnionDues(gross);
 	}
 
 	public void calcWithHold(double gross) {
@@ -97,9 +100,6 @@ public class Controller {
 	public void calcUnionDues(double gross) {
 	
 	}
-//	public void calcNetPay(double hours) {
-//		
-//	}
 	
 	public void loadData() {
 		
