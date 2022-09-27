@@ -97,9 +97,9 @@ public class Controller {
 	public void calcUnionDues(double gross) {
 	
 	}
-	public void calcNetPay(double hours) {
-		
-	}
+//	public void calcNetPay(double hours) {
+//		
+//	}
 	
 	public void loadData() {
 		
