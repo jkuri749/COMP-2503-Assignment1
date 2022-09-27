@@ -35,12 +35,14 @@ public class Controller {
 			}
 			loadData();
 		}
-		double gross;
+		double gross = 0;
 		for (Employee em: list) {
 			employee = em;
 			double hours = employee.getMaxHours();
 			gross = calcGrossPay(hours, employee);
+//			break;
 		}
+		System.out.println("gross: " + gross);
 //		deductions(gross);
 	}
 

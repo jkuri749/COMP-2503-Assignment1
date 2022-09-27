@@ -13,6 +13,6 @@ public class AppDriver {
 		 * Calls the Controller class
 		 */
 		new Controller();
-		System.out.println("Ran");
+		System.out.println("End");
 	}
 }
