@@ -8,9 +8,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-
-
-
 public class Controller {
 
 	private final String FILE_NAME = "res/EmployeeInfo.txt";
@@ -20,7 +17,7 @@ public class Controller {
 	public Controller() {
 		
 		list = new ArrayList<>();
-		Employee employee;
+		Employee employee = null;
 		
 		//make new file with the file name
 		eFile = new File(FILE_NAME);
@@ -38,15 +35,18 @@ public class Controller {
 			}
 			loadData();
 		}
+		double gross;
 		for (Employee em: list) {
 			employee = em;
-			calcGrossPay(employee);
+			double hours = employee.getMaxHours();
+			gross = calcGrossPay(hours, employee);
 		}
-		
+//		deductions(gross);
 	}
-	
-	public double calcGrossPay(Employee e) {
-		double hours = e.getMaxHours();
+
+
+	public double calcGrossPay(double h, Employee e) {
+		double hours = h;
 		double earnings = 0;
 		char type = e.getType();
 		
@@ -59,31 +59,48 @@ public class Controller {
 				double pay = e.getPayRate() / 24;
 				earnings = pay * hours;
 				if (hours > 40 && hours <= 60) {
-					double h = (hours - 40);
-					earnings = (earnings) + (pay * h);
-					return earnings;
+					double hr = (hours - 40);
+					earnings = (earnings) + (pay * hr);
 				} else if (hours > 60) {
 					earnings = 0;
 				}
 				
 			} else if (type == 'C') {
-				
+				if (hours <= e.getMaxHours()) {
+					earnings = e.getPayRate() * hours;
+				} else {
+					earnings = 0;
+				}
 			}
 		return earnings;
 	}
 	
-//	private Employee searchType(char type) {
-//		Employee em = null;
-//		
-//		for (Employee e: list) {
-//			if (e.getType() == type) {
-//				em = e;
-//				break;
-//			}
-//		}
-//		return em;
-//	}
+	public void deductions(double g) {
+		double gross = g;
+		calcWithHold(gross);
+		
+	}
 
+	public void calcWithHold(double gross) {
+		
+	}
+	public void calcCPP(double gross) {
+		
+	}
+
+	public void calcEl(double gross) {
+		
+	}
+	public void calcExtHealth(double gross) {
+	
+	}
+	public void calcUnionDues(double gross) {
+	
+	}
+	public void calcNetPay(double hours) {
+		
+	}
+	
 	public void loadData() {
 		
 		File file = new File(FILE_NAME);
