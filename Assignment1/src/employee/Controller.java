@@ -35,13 +35,14 @@ public class Controller {
 			loadData();
 		}
 		double gross = 0;
+		double netPay = 0;
 		for (Employee em: list) {
 			employee = em;
 			double hours = employee.getMaxHours();
 			gross = calcGrossPay(hours, employee);
 //			System.out.println("gross: " + gross);
-			deductions(gross,employee);
-			prinDetails(employee);
+			netPay = netPay(hours,gross,employee);
+			prinDetails(netPay, gross, employee);
 			System.out.println();
 		}
 	}
@@ -82,25 +83,32 @@ public class Controller {
 		return earnings;
 	}
 	
-	public void deductions(double g, Employee e) {
-		double gross = g;
+	public double netPay(double hours, double g, Employee e) {
+		double gross = g * hours;
 		char t = e.getType();
-		
-		calcWithHold(gross);
-		calcCPP(gross);
-		calcEl(gross);
-		
+		double deduct1 = calcWithHold(gross);
+		double deduct2 = calcCPP(gross);
+		double deduct3 = calcEl(gross);
+		double deductAll = (deduct1 + deduct2 + deduct3);
+		gross = gross - deductAll;
+		double deduct4 = 0;
+		double deduct5 = 0;
 		if (t == 'S' || t == 'H') {
-			calcExtHealth(gross);
+			deduct4 = calcExtHealth(gross);
+			gross = gross - deduct4;
 		}
-		calcUnionDues(gross);
+		if (t == 'H') {
+			deduct5 = calcUnionDues(gross);
+			gross = gross - deduct5;
+		}
+		return gross;
 	}
 
 	public double calcWithHold(double gross) {
 		double g = gross;
-		double deduct1 = 7.5;
-		int deduct2 = 12;
-		int deduct3 = 17;
+		double deduct1 = 0.075;
+		double deduct2 = 0.12;
+		double deduct3 = 0.17;
 
 		if (g < 1000) {
 			g = g*deduct1;
@@ -111,27 +119,32 @@ public class Controller {
 		} else {
 			System.out.print("Sorry, you are unemployed");
 		}
-	
 		return g;
 	}
 	public double calcCPP(double gross) {
 		double g = gross;
-		double deduct1 = 7.5;
+		double deduct1 = 0.0475;
 		g *= deduct1;
 		return g;
 	}
 
 	public double calcEl(double gross) {
 		double g = gross;
-		double deduct1 = 1.8;
+		double deduct1 = 0.018;
 		g *= deduct1;
 		return g;
 	}
-	public void calcExtHealth(double gross) {
-		
+	public double calcExtHealth(double gross) {
+		double g = gross;
+		double deduct1 = 0.013;
+		g *= deduct1;
+		return g;
 	}
-	public void calcUnionDues(double gross) {
-	
+	public double calcUnionDues(double gross) {
+		double g = gross;
+		double deduct1 = 0.01;
+		g = g*deduct1;
+		return g;
 	}
 	
 	public void loadData() {
@@ -184,12 +197,16 @@ public class Controller {
 	 * print method to print employee details
 	 * @param employee
 	 */
-	public void prinDetails(Employee e) {
+	public void prinDetails(double netPay, double gross, Employee e) {
+		double g = gross;
+		double n = netPay;
 		System.out.println("Employee Number: " + e.getEmpNo());
 		System.out.println("Employee Name: " + e.getEmpName());
 		System.out.println("Employee Department: " + e.getDepartment());
 		System.out.println("Employee Type: " + toString(e));
 		System.out.println("Pay Rate: " + e.getPayRate());
+		System.out.println("Gross Weekly Pay: " + g);
 		System.out.println("Max Hours: " + e.getMaxHours());
+		System.out.println("Net Pay: " + n);
 	}
 }
