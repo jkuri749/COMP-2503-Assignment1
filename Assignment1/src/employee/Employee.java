@@ -122,9 +122,12 @@ public class Employee implements Comparable<Employee> {
 		this.maxHours = maxHours;
 	}
 	
+	/**
+	 * compareTo method to compare employees based on employee number
+	 * @return result -1, 0, or 1 to declare if <, =, or >
+	 */
 	@Override
 	public int compareTo(Employee o) {
-		// Compare employees based on employee number
 		int result = 0;
 		
 		if (this.empNo < o.getEmpNo()) {
