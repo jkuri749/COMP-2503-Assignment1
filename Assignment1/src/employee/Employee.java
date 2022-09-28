@@ -1,5 +1,9 @@
 package employee;
 
+/**
+ * Employee class that defines variables associated with the employee
+ * Implements Comparable to sort employees by employee number with compareTo method
+ */
 public class Employee implements Comparable<Employee> {
 	
 	private int empNo;
@@ -10,7 +14,7 @@ public class Employee implements Comparable<Employee> {
 	private double maxHours;
 	
 	/**
-	 * Creates an Employee
+	 * Creates an Employee object
 	 */
 	Employee() {
 		empNo = 0;

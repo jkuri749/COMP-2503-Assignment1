@@ -4,7 +4,7 @@ package employee;
 public class AppDriver {
 	
 	/** 
-	 * @author joshuakuriakose
+	 * @author joshuakuriakose, gurmangrewal
 	 * @param args
 	 */
 	public static void main(String[] args) {
