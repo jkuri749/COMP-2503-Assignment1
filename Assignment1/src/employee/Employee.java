@@ -46,9 +46,6 @@ public class Employee implements Comparable<Employee> {
 	 * @param Employee
 	 */
 	Employee(Employee e) {
-		empNo = e.empNo;
-		empName = e.empName; 
-		department = e.department;
 		type = e.type;
 		payRate = e.payRate;
 		maxHours = e.maxHours;

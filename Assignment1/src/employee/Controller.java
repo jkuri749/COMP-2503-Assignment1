@@ -7,6 +7,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 //import employee.Employee;
 
+/**
+ * COMP 2503 Assignment 1
+ * @author Joshua Kuriakose
+ * @author Gurman Grewal
+ * @version 1.0
+ */
+
 public class Controller {
 
 	private final String FILE_NAME = "res/EmployeeInfo.txt";
@@ -18,12 +25,9 @@ public class Controller {
 		list = new ArrayList<>();
 		Employee employee = null;
 		
-		//make new file with the file name
 		eFile = new File(FILE_NAME);
 		
-		//check if it exists, else create a new text file
 		if(eFile.exists()) {
-			//call method to load arrayList
 			loadData();
 		} else {
 			try {
@@ -40,14 +44,16 @@ public class Controller {
 			employee = em;
 			double hours = employee.getMaxHours();
 			gross = calcGrossPay(hours, employee);
-//			System.out.println("gross: " + gross);
 			netPay = netPay(hours,gross,employee);
 			prinDetails(netPay, gross, employee);
 			System.out.println();
 		}
 	}
 
-
+	/**
+	 * @param hours, employee object
+	 * @return earnings
+	 */
 	public double calcGrossPay(double h, Employee e) {
 		double hours = h;
 		double earnings = 0;
@@ -83,6 +89,10 @@ public class Controller {
 		return earnings;
 	}
 	
+	/**
+	 * @param hours, gross pay, employee object
+	 * @return gross pay after deductions
+	 */
 	public double netPay(double hours, double g, Employee e) {
 		double gross = g * hours;
 		char t = e.getType();
@@ -104,6 +114,10 @@ public class Controller {
 		return gross;
 	}
 
+	/**
+	 * @param gross income
+	 * @return deducted earnings
+	 */
 	public double calcWithHold(double gross) {
 		double g = gross;
 		double deduct1 = 0.075;
@@ -121,6 +135,11 @@ public class Controller {
 		}
 		return g;
 	}
+	
+	/**
+	 * @param gross income
+	 * @return deducted earnings
+	 */
 	public double calcCPP(double gross) {
 		double g = gross;
 		double deduct1 = 0.0475;
@@ -128,18 +147,30 @@ public class Controller {
 		return g;
 	}
 
+	/**
+	 * @param gross income
+	 * @return deducted earnings
+	 */
 	public double calcEl(double gross) {
 		double g = gross;
 		double deduct1 = 0.018;
 		g *= deduct1;
 		return g;
 	}
+	/**
+	 * @param gross income
+	 * @return deducted earnings
+	 */
 	public double calcExtHealth(double gross) {
 		double g = gross;
 		double deduct1 = 0.013;
 		g *= deduct1;
 		return g;
 	}
+	/**
+	 * @param gross income
+	 * @return deducted earnings
+	 */
 	public double calcUnionDues(double gross) {
 		double g = gross;
 		double deduct1 = 0.01;
@@ -147,6 +178,10 @@ public class Controller {
 		return g;
 	}
 	
+	/**
+	 * @author joshuakuriakose
+	 * loads data from text file
+	 */
 	public void loadData() {
 		
 		File file = new File(FILE_NAME);
