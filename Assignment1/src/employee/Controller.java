@@ -205,9 +205,8 @@ public class Controller {
 		System.out.println("Employee Department: " + e.getDepartment());
 		System.out.println("Employee Type: " + toString(e));
 		System.out.println("Pay Rate: $" + e.getPayRate());
-		System.out.println("Pay Rate: " + e.getPayRate());
-		System.out.println("Gross Weekly Pay: " + g);
+		System.out.println("Gross Weekly Pay: $" + g);
 		System.out.println("Max Hours: " + e.getMaxHours());
-		System.out.println("Net Pay: " + n);
+		System.out.println("Net Pay: $" + n);
 	}
 }
