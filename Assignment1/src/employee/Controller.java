@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import employee.Employee;
 
 public class Controller {
 
@@ -125,5 +125,40 @@ public class Controller {
 			}
 			fileReader.close();
 		}
+	}
+	
+	/**
+	 * toString method to convert employee type from char to string
+	 * @param employee
+	 * @return employee type
+	 */
+	public String toString(Employee e) {
+		String name = "Unkown";
+		char c = e.getType();
+		
+		if (c == 'S' | c == 's') {
+			name = "Salary";
+		}
+		else if (c == 'H' | c == 'h') {
+			name = "Hourly";
+		}
+		else if (c == 'C' | c == 'c') {
+			name = "Contractor";
+		}
+		return name;
+			
+	}
+	
+	/**
+	 * print method to print employee details
+	 * @param employee
+	 */
+	public void prinDetails(Employee e) {
+		System.out.println("Employee Number: " + e.getEmpNo());
+		System.out.println("Employee Name: " + e.getEmpName());
+		System.out.println("Employee Department: " + e.getDepartment());
+		System.out.println("Employee Type: " + toString(e));
+		System.out.println("Pay Rate: " + e.getPayRate());
+		System.out.println("Max Hours: " + e.getMaxHours());
 	}
 }
