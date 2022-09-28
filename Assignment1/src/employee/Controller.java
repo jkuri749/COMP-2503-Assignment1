@@ -209,7 +209,7 @@ public class Controller {
 	/**
 	 * toString method to convert employee type from char to string
 	 * @param employee
-	 * @return employee type
+	 * @return employee type as a string
 	 */
 	public String toString(Employee e) {
 		String name = "Unkown";
@@ -240,9 +240,8 @@ public class Controller {
 		System.out.println("Employee Department: " + e.getDepartment());
 		System.out.println("Employee Type: " + toString(e));
 		System.out.println("Pay Rate: $" + e.getPayRate());
-		System.out.println("Pay Rate: " + e.getPayRate());
-		System.out.println("Gross Weekly Pay: " + g);
+		System.out.println("Gross Weekly Pay: $" + g);
 		System.out.println("Max Hours: " + e.getMaxHours());
-		System.out.println("Net Pay: " + n);
+		System.out.println("Net Pay: $" + n);
 	}
 }

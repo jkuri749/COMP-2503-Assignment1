@@ -19,6 +19,5 @@ public class AppDriver {
 		 * Calls the Controller class
 		 */
 		new Controller();
-		System.out.println("End");
 	}
 }
