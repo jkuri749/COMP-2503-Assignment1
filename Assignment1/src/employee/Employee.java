@@ -1,6 +1,6 @@
 package employee;
 
-public class Employee {
+public class Employee implements Comparable<Employee> {
 	
 	private int empNo;
 	private String empName;
@@ -120,6 +120,23 @@ public class Employee {
 	 */
 	public void setMaxHours(int maxHours) {
 		this.maxHours = maxHours;
+	}
+	
+	@Override
+	public int compareTo(Employee o) {
+		// Compare employees based on employee number
+		int result = 0;
+		
+		if (this.empNo < o.getEmpNo()) {
+			result = -1;
+		}
+		else if (this.empNo > o.getEmpNo()) {
+			result = 1;
+		}
+		else {
+			return 0;
+		}
+		return result;
 	}
 	
 }
