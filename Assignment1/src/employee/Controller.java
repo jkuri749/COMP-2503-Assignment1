@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import employee.Employee;
+//import employee.Employee;
 
 public class Controller {
 
@@ -39,11 +39,11 @@ public class Controller {
 			employee = em;
 			double hours = employee.getMaxHours();
 			gross = calcGrossPay(hours, employee);
-			System.out.println("gross: " + gross);
+//			System.out.println("gross: " + gross);
 			deductions(gross,employee);
-//			break;
+			prinDetails(employee);
+			System.out.println();
 		}
-
 	}
 
 
