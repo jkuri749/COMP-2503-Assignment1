@@ -7,12 +7,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 //import employee.Employee;
 
-/**
- * COMP 2503 Assignment 1
- * @author Joshua Kuriakose
- * @author Gurman Grewal
- * @version 1.0
- */
 
 public class Controller {
 
@@ -179,7 +173,6 @@ public class Controller {
 	}
 	
 	/**
-	 * @author joshuakuriakose
 	 * loads data from text file
 	 */
 	public void loadData() {
