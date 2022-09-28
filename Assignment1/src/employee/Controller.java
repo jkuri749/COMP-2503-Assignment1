@@ -2,7 +2,6 @@ package employee;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-//import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -40,10 +39,11 @@ public class Controller {
 			employee = em;
 			double hours = employee.getMaxHours();
 			gross = calcGrossPay(hours, employee);
+			System.out.println("gross: " + gross);
+			deductions(gross,employee);
 //			break;
 		}
-		System.out.println("gross: " + gross);
-//		deductions(gross);
+
 	}
 
 
@@ -51,19 +51,24 @@ public class Controller {
 		double hours = h;
 		double earnings = 0;
 		char type = e.getType();
+		final int weekPerYear = 52;
+		final int regHourly = 40;
+		final int maxHourly = 60;
+		final int hoursPerDay = 24;
+		final int regSalaryHours = 168;
 		
 			if (type == 'S') {
-				if (hours <= 168) {
-					earnings = e.getPayRate() / 52;
+				if (hours <= regSalaryHours) {
+					earnings = e.getPayRate() / weekPerYear;
 				}
 				
 			} else if (type == 'H') {
-				double pay = e.getPayRate() / 24;
+				double pay = e.getPayRate() / hoursPerDay;
 				earnings = pay * hours;
-				if (hours > 40 && hours <= 60) {
-					double hr = (hours - 40);
+				if (hours > regHourly && hours <= maxHourly) {
+					double hr = (hours - regHourly);
 					earnings = (earnings) + (pay * hr);
-				} else if (hours > 60) {
+				} else if (hours > maxHourly) {
 					earnings = 0;
 				}
 				
@@ -77,27 +82,53 @@ public class Controller {
 		return earnings;
 	}
 	
-	public void deductions(double g) {
+	public void deductions(double g, Employee e) {
 		double gross = g;
+		char t = e.getType();
+		
 		calcWithHold(gross);
 		calcCPP(gross);
 		calcEl(gross);
-		calcExtHealth(gross);
+		
+		if (t == 'S' || t == 'H') {
+			calcExtHealth(gross);
+		}
 		calcUnionDues(gross);
 	}
 
-	public void calcWithHold(double gross) {
-		
+	public double calcWithHold(double gross) {
+		double g = gross;
+		double deduct1 = 7.5;
+		int deduct2 = 12;
+		int deduct3 = 17;
+
+		if (g < 1000) {
+			g = g*deduct1;
+		} else if (g >= 1000 && g < 2000) {
+			g *= deduct2;
+		} else if (g > 2000) {
+			g *= deduct3;
+		} else {
+			System.out.print("Sorry, you are unemployed");
+		}
+	
+		return g;
 	}
-	public void calcCPP(double gross) {
-		
+	public double calcCPP(double gross) {
+		double g = gross;
+		double deduct1 = 7.5;
+		g *= deduct1;
+		return g;
 	}
 
-	public void calcEl(double gross) {
-		
+	public double calcEl(double gross) {
+		double g = gross;
+		double deduct1 = 1.8;
+		g *= deduct1;
+		return g;
 	}
 	public void calcExtHealth(double gross) {
-	
+		
 	}
 	public void calcUnionDues(double gross) {
 	
