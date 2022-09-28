@@ -14,7 +14,7 @@ public class Employee implements Comparable<Employee> {
 	private double maxHours;
 	
 	/**
-	 * Creates an Employee object
+	 * Default Employee (no-arg) constructor that sets all numerical values to 0 and strings to “null”
 	 */
 	Employee() {
 		empNo = 0;
@@ -25,11 +25,11 @@ public class Employee implements Comparable<Employee> {
 		maxHours = 0;
 	}
 	/**
-	 * Creates an Employee
+	 * Employee constructor that accepts as parameters, values for the fields.
 	 * @param number 
 	 * @param name 
-	 * @param dep 
-	 * @param t 
+	 * @param department
+	 * @param type
 	 * @param pay
 	 * @param max
 	 */
@@ -41,18 +41,22 @@ public class Employee implements Comparable<Employee> {
 		payRate = pay;
 		maxHours = max;
 	}
+	
 	/**
-	 * Creates an Employee
+	 * Employee copy constructor that will take in the values of another employee
+	 * except for the employee number, employee name, and department.
 	 * @param Employee
 	 */
 	Employee(Employee e) {
-		empNo = e.empNo;
-		empName = e.empName; 
-		department = e.department;
 		type = e.type;
 		payRate = e.payRate;
 		maxHours = e.maxHours;
 	}
+	
+	/**
+	 * The following are the getters and setters for each of the instance variables
+	 */
+	
 	/**
 	 * @return the empNo
 	 */
@@ -130,7 +134,6 @@ public class Employee implements Comparable<Employee> {
 	 * compareTo method to compare employees based on employee number
 	 * @return result -1, 0, or 1 to declare if <, =, or >
 	 */
-	@Override
 	public int compareTo(Employee o) {
 		int result = 0;
 		

@@ -174,7 +174,7 @@ public class Controller {
 	/**
 	 * toString method to convert employee type from char to string
 	 * @param employee
-	 * @return employee type
+	 * @return employee type as a string
 	 */
 	public String toString(Employee e) {
 		String name = "Unkown";
